@@ -73,9 +73,14 @@ public class Controller {
                     a.searchById(searchId);
                     break;  
                 
-                
-                    
-    
+                case 7: 
+                    System.out.println("Введите ID животного, которому будет добавлена команда:");
+                    String IdCommand = scanner.nextLine();
+                    System.out.println("Введите новую команду :");
+                    String newCommand = scanner.nextLine();
+                    a.addCommand(IdCommand, newCommand);
+                    break; 
+
                 case 8:
                     System.out.println("Введите имя файла для импорта данных:");
                     String fileName = scanner.nextLine();

@@ -115,9 +115,34 @@ public class AnimalRegistry {
         }
 
     }
-    
 
-       
+    public void addCommand (String id, String command){
+
+        Animal result = null;
+        boolean presenceID = false; 
+        for (Animal a : animals) {
+            if (a.getIdAnimal().equals(id)) {
+                presenceID = true;
+                result = a;
+            }
+        }    
+        if (presenceID == false) {
+            System.out.println("Животное с указанным идентификатором отсутствует в реестре");
+            return; 
+        }
+        String listCommands = result.getCommands();
+        if (!listCommands.contains(command)) {
+            result.setCommands(listCommands + " " + command);
+            StringBuilder sb = BuildString(animals);
+            WriterFile.writeFile(sb, "registry_animals.txt"); 
+            System.out.println("Kоманда " + command + " добавлена в перечень команд");
+        } else {
+            System.out.println("Введенная команда уже содержится в списке команд");
+        }
+
+    }
+    
+    
     public void importFromFile(String fileName) {
 
         Scanner scan = ReaderFile.readFile(fileName);
